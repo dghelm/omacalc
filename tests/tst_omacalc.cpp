@@ -262,6 +262,8 @@ private slots:
         Backend withInvalidColor;
         QCOMPARE(withInvalidColor.themeBackground(), QStringLiteral("#ffffff"));
         QCOMPARE(withInvalidColor.themeForeground(), QStringLiteral("#101010"));
+        QCOMPARE(withInvalidColor.themeAccent(), QStringLiteral("#2077b2"));
+        QCOMPARE(withInvalidColor.themeSelection(), QStringLiteral("#2077b2"));
         QVERIFY(!withInvalidColor.darkMode());
     }
 
