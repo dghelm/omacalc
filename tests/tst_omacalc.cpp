@@ -255,7 +255,7 @@ private slots:
         const QByteArray invalidPalette(
             "mode = \"light\"\n"
             "background = \"not a color\" # invalid canvas\n"
-            "foreground = \"#101010\" # valid text\n");
+            "foreground = #101010 # bare hex text\n");
         QCOMPARE(colorsFile.write(invalidPalette), qint64(invalidPalette.size()));
         colorsFile.close();
 

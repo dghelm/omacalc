@@ -20,7 +20,9 @@ const QString minusSign = QStringLiteral("−");
 const QString multiplySign = QStringLiteral("×");
 const QString divideSign = QStringLiteral("÷");
 
-QString withoutTomlComment(const QString &value) {
+// A leading # is a bare hex color rather than a comment.
+QString withoutTomlComment(const QString &text) {
+    const QString value = text.trimmed();
     QChar quote;
     bool escaped = false;
     for (int i = 0; i < value.size(); ++i) {
@@ -34,7 +36,7 @@ QString withoutTomlComment(const QString &value) {
         } else if (quote.isNull() && (character == QLatin1Char('"')
                                       || character == QLatin1Char('\''))) {
             quote = character;
-        } else if (quote.isNull() && character == QLatin1Char('#')) {
+        } else if (quote.isNull() && character == QLatin1Char('#') && i > 0) {
             return value.left(i).trimmed();
         }
     }
